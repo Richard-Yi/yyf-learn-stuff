@@ -9,7 +9,7 @@ public class MethodFinalStaticSignatureTest {
     public static void main(String[] args) {
 
         // 静态方法的继承没有任何意义，因为没有多态性
-        // 本身Override的意义就在覆盖父类的同名方法，但是static修饰之后导致，这个还是可以被访问
+        // 本身Override的意义就在覆盖父类的同名方法，但是static修饰之后导致，这个父类的同名方法还是可以被访问
         // 当然 使用 final 声明了之后，子类就不能Override这个方法了
         // 所以编译器会提示
         // <p> When a static method is overridden in a subclass
