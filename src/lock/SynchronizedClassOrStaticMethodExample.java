@@ -49,8 +49,8 @@ public class SynchronizedClassOrStaticMethodExample {
 
 
     public static void main(String[] args) {
-//        case1();
-        case2();
+        case1();
+//        case2();
     }
 
     private static void case1() {
@@ -61,6 +61,8 @@ public class SynchronizedClassOrStaticMethodExample {
         exector.execute(example1::func1);
         exector.execute(example2::func1);
 //        exector.execute(example::func2);
+
+        ThreadPoolUtil.tryReleasePool(exector);
     }
 
     private static void case2() {
@@ -70,6 +72,8 @@ public class SynchronizedClassOrStaticMethodExample {
         exector.execute(SynchronizedClassOrStaticMethodExample::synchronizedStaticMethod);
 //        exector.execute(SynchronizedClassOrStaticMethodExample::synchronizedStaticMethod);
         exector.execute(example::func4);
+
+        ThreadPoolUtil.tryReleasePool(exector);
     }
 
     //  after debugging the code, found that the two threads are both waiting,
