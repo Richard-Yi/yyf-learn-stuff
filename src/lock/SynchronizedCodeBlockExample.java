@@ -17,6 +17,8 @@ public class SynchronizedCodeBlockExample {
 
     private static final int TIMES = 10;
 
+    private int param = 1231;
+
     public void func1() {
         synchronized (this) {
             for (int i = 0; i < TIMES; i++) {
@@ -26,11 +28,17 @@ public class SynchronizedCodeBlockExample {
     }
 
     public void func2() {
-        synchronized (this) {
-            for (int i = 0; i < TIMES; i++) {
-                System.out.println(i + " ");
-            }
+        for (int i = 0; i < TIMES; i++) {
+            System.out.println(i + " ");
         }
+    }
+
+    public void func3() {
+
+            for (int i = 0; i < TIMES; i++) {
+                System.out.println(i + " " + param + " ");
+            }
+
     }
 
     public static void main(String[] args) {
@@ -64,6 +72,7 @@ public class SynchronizedCodeBlockExample {
         // 往线程池中放两个任务 按照 缓存线程池的机制，会有两个线程执行
         exector.execute(example::func1);
 //        exector.execute(example::func1);
-        exector.execute(example::func2);
+//        exector.execute(example::func2);
+        exector.execute(example::func3);
     }
 }
