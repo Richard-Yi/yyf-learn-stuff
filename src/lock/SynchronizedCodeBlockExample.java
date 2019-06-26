@@ -4,7 +4,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Synchronized 同步代码块 知识点示例
+ * Synchronized 同步代码块/方法 知识点示例
+ * 同步代码块 和 同步方法原理相同
+ * <>
+ *     1. synchronized (this) 这样的表达，锁的是实例，线程执行到了同步代码块或者非static同步方法的时候，
+ *     就获取到了这个实例的锁，其他线程这个时候就访问不了这个对象，包括这个实例对象的非static的变量和方法。
+ * </>
  * @author Richard_yyf
  * @version 1.0 2019/6/26
  */
@@ -20,9 +25,17 @@ public class SynchronizedCodeBlockExample {
         }
     }
 
+    public void func2() {
+        synchronized (this) {
+            for (int i = 0; i < TIMES; i++) {
+                System.out.println(i + " ");
+            }
+        }
+    }
+
     public static void main(String[] args) {
-//        case1();
-        case2();
+        case1();
+//        case2();
     }
 
 
@@ -37,7 +50,7 @@ public class SynchronizedCodeBlockExample {
         ExecutorService exector = Executors.newCachedThreadPool();
         // 往线程池中放两个任务 按照 缓存线程池的机制，会有两个线程执行
         exector.execute(example1::func1);
-        exector.execute(example2::func1);
+        exector.execute(example2::func2);
     }
 
     /**
@@ -50,6 +63,7 @@ public class SynchronizedCodeBlockExample {
         ExecutorService exector = Executors.newCachedThreadPool();
         // 往线程池中放两个任务 按照 缓存线程池的机制，会有两个线程执行
         exector.execute(example::func1);
-        exector.execute(example::func1);
+//        exector.execute(example::func1);
+        exector.execute(example::func2);
     }
 }
