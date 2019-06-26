@@ -80,4 +80,7 @@ public class SynchronizedClassOrStaticMethodExample {
     //  which cause tha fact that the main thread don't stop and keeps running.
     //  exector.execute(SynchronizedClassOrStaticMethodExample::synchronizedStaticMethod);
     //  exector.execute(example::func4);
+
+    // A: 这个现象是合理的，CachedThreadPool 会关闭 空闲事件超过60s的线程，
+    //    当线程池中的线程全部关闭之后，线程池也就是关闭了，程序就结束运行了
 }
