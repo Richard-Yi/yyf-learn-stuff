@@ -72,7 +72,8 @@ public class SynchronizedClassOrStaticMethodExample {
         exector.execute(example::func4);
     }
 
-    //  为什么这样执行case2 会造成两个线程wait
+    //  after debugging the code, found that the two threads are both waiting,
+    //  which cause tha fact that the main thread don't stop and keeps running.
     //  exector.execute(SynchronizedClassOrStaticMethodExample::synchronizedStaticMethod);
     //  exector.execute(example::func4);
 }
