@@ -2,14 +2,13 @@ package lock;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Synchronized 同步代码块/方法 知识点示例
  * 同步代码块 和 同步方法原理相同
  * <>
  * 1. synchronized (this) 这样的表达，锁的是实例，线程执行到了同步代码块或者非static同步方法的时候，
- * 就获取到了这个实例的锁，其他线程这个时候就访问不了这个对象，包括这个实例对象的非static的变量和方法。
+ * 就获取到了这个临界区的锁，其他线程进入到等待状态，无法进入该临界区。
  * </>
  *
  * @author Richard_yyf
@@ -25,6 +24,12 @@ public class SynchronizedCodeBlockExample {
         synchronized (this) {
             for (int i = 0; i < TIMES; i++) {
                 System.out.print(i + " ");
+            }
+            System.out.println("thread sleep 30s");
+            try {
+                Thread.sleep(30 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
