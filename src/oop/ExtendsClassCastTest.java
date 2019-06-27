@@ -8,8 +8,17 @@ package oop;
 public class ExtendsClassCastTest {
 
     public static void main(String[] args) {
-        ChildClass childClass = genResp();
-        System.out.println(childClass.getCode());
+        ChildClass childClass = new ChildClass();
+        testInstanceof(childClass);
+        testInstanceof(new SuperClass());
+    }
+
+    private static void testInstanceof(SuperClass childClass) {
+        if (childClass instanceof ChildClass) {
+            System.out.println("instanceof is working");
+        } else {
+            System.out.println("instanceof is not working");
+        }
     }
 
     public static <T> T genResp() {
