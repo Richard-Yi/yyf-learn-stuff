@@ -57,6 +57,7 @@ public class JoinExample {
                // main 线程必须等到 jt 执行完之后才会向下执行
                try {
                    jt.join();
+                   // join(long mills) - 等待时间内 被join的线程还没执行，不再等待
                } catch (InterruptedException e) {
                    e.printStackTrace();
                }
