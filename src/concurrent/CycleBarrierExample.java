@@ -4,10 +4,7 @@ import concurrent.lock.ThreadPoolUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -47,7 +44,11 @@ public class CycleBarrierExample {
                     System.out.println(Thread.currentThread().getName() + "执行屏障之前的操作, current count" + count);
                 } finally {
                     System.out.println(Thread.currentThread().getName() + "到达屏障，开始等待");
-                    cyclicBarrier.await();
+                    try {
+                        cyclicBarrier.await();
+                    } catch (InterruptedException | BrokenBarrierException e) {
+                        e.printStackTrace();
+                    }
                 }
                 // 屏障之后，统一执行的操作
                 System.out.println(Thread.currentThread().getName() + "执行屏障之后的操作, current count" + count);
