@@ -21,6 +21,8 @@ import java.util.concurrent.*;
  */
 public class ForkJoinExample {
 
+    // 如果不需要返回值，就集成RecursiveAction (RecursiveAction extends ForkJoinTask<Void>，是没有返回值的)
+
     private class MyForkJoinTask extends RecursiveTask<Integer> {
 
         private final int threshold = 5;
