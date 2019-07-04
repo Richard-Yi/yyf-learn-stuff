@@ -1,5 +1,7 @@
 package concurrent;
 
+import concurrent.lock.ThreadPoolUtil;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -36,7 +38,7 @@ public class CompilerSortExample {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        ThreadPoolUtil.tryReleasePool(executorService);
     }
 
     private void setToStop() {
@@ -61,6 +63,8 @@ public class CompilerSortExample {
                 System.out.println(count);
             }
         });
+
+        ThreadPoolUtil.tryReleasePool(executorService);
     }
 
     public void run() {
