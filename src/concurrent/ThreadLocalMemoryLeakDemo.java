@@ -6,13 +6,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * a demo to simulate threadLocal OOM situation
+ * a demo to simulate threadLocal OOM situation caused by memory leak
  * JVM -Xmx256m
  *
  * @author Richard_yyf
  * @version 1.0 2019/7/4
  */
-public class ThreadLocalOOMDemo {
+public class ThreadLocalMemoryLeakDemo {
 
     private static final int THREAD_LOOP_SIZE = 500;
 
@@ -21,7 +21,7 @@ public class ThreadLocalOOMDemo {
     private static ThreadLocal<List<User>> threadLocal = new ThreadLocal<>();
 
     public static void main(String[] args) {
-        ThreadLocalOOMDemo demo = new ThreadLocalOOMDemo();
+        ThreadLocalMemoryLeakDemo demo = new ThreadLocalMemoryLeakDemo();
         demo.testCase();
     }
 
