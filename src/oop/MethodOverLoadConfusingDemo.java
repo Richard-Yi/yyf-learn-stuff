@@ -6,6 +6,8 @@ package oop;
  * (Every double array is an Object, but not every Object is a double array.)
  * The most specific constructor is therefore Confusing(double[]), which explains the program's output.
  *
+ * https://stackoverflow.com/questions/1572322/overloaded-method-selection-based-on-the-parameters-real-type
+ *
  * @author Richard_yyf
  * @version 1.0 2019/7/8
  */
