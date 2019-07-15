@@ -1,5 +1,7 @@
 package concurrent;
 
+import concurrent.lock.ThreadPoolUtil;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -21,6 +23,7 @@ public class ThreadLocalDirtyDataDemo {
             MyThread thread = new MyThread();
             pool.execute(thread);
         }
+        ThreadPoolUtil.tryReleasePool(pool);
     }
 
     private static class MyThread extends Thread {
