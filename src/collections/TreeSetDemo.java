@@ -14,7 +14,6 @@ public class TreeSetDemo {
         //  this time would print false here
         System.out.println(set.add(1));
         System.out.println(set.add(null));
-
         set.add(2);
         set.add(3);
         set.add(4);
