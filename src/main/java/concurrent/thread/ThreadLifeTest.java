@@ -1,4 +1,4 @@
-package concurrent.thread;
+package main.java.concurrent.thread;
 
 import java.io.IOException;
 import java.util.concurrent.locks.Condition;

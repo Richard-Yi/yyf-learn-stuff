@@ -1,4 +1,4 @@
-package ionio;
+package main.java.ionio;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -13,24 +13,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class BatchUrlPicDownloader {
 
-    private static String[] urls = {"http://ww1.sinaimg.cn/large/005XyHIDly1g509dum4l8j30j5083glt.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50b4rpla9j30qk0fztap.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50bfs68lfj30qh08bq4e.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50b9j5bzuj30e508cjse.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50cu9t091j30sc0apmzc.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50c2ma8krj32d434s1kx.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50c6xs4w5j30pc0c6dhp.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50c9xsij3j30qs0e2ju6.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50b4rpla9j30qk0fztap.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50b52kdjkj30o60im76e.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50bge35jsj30o708w0u9.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50rde0gj9j30eu052q31.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50rj6x69fj30e30eogmp.jpg",
-            "http://ww1.sinaimg.cn/large/005XyHIDly1g50rmxtf4lj30ut0gs0v8.jpg"};
+    private static String[] urls = {"http://ww1.sinaimg.cn/large/005XyHIDly1g8nha4eup0j31de199n8q.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8olr7clf7j30ze04y3zt.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8pp8k0yggj31d019d13j.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ppa6d2o9j319r0ufgt9.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ppayxml9j31bd0ahabq.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ppcgpi6rj31b00bbgnk.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ompfmloij30qp05lgma.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8pph5tnqlj318s0f141f.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ppl7huamj319v2ennf7.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ppm1d5enj311g0dxgnu.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ppns4nboj315h0x6gt2.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ppt7a0m9j30wp0abgmz.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8pptiij2lj30r00d2q4a.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ppttppk1j311z08jwfg.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ppu4boylj30rm0ghmys.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8ppuex7p7j318z0bwwgj.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8qda2qkhfj31aw0de42h.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8qdd625fej309y0dlq3d.jpg","http://ww1.sinaimg.cn/large/005XyHIDly1g8qdgikrsvj31gn0co0x0.jpg"};
 
     private static final String dirPath = "E:/blogImg/";
 
-    private static String blogTile = "List相关_";
+    private static String blogTile = "Spring_AOP_3_";
 
     private static String suffix = ".jpg";
 
@@ -53,21 +40,20 @@ public class BatchUrlPicDownloader {
 
         String filePath = dirPath + blogTile + count.getAndIncrement() + suffix;
 
-        /* 此为联系获得网络资源的固定格式用法，以便后面的in变量获得url截取网络资源的输入流 */
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         DataInputStream in = new DataInputStream(connection.getInputStream());
 
-        /* 此处也可用BufferedInputStream与BufferedOutputStream  需要保存的路径*/
         DataOutputStream out = new DataOutputStream(new FileOutputStream(filePath));
 
-        /* 将参数savePath，即将截取的图片的存储在本地地址赋值给out输出流所指定的地址 */
         byte[] buffer = new byte[4096];
         int count = 0;
-        while ((count = in.read(buffer)) > 0)/* 将输入流以字节的形式读取并写入buffer中 */
+
+        while ((count = in.read(buffer)) > 0)
         {
             out.write(buffer, 0, count);
         }
-        out.close();/* 后面三行为关闭输入输出流以及网络资源的固定格式 */
+
+        out.close();
         in.close();
         connection.disconnect();
     }

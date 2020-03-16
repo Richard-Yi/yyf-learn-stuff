@@ -1,4 +1,4 @@
-package concurrent.thread;
+package main.java.concurrent.thread;
 
 /**
  * @author Richard_yyf
@@ -51,7 +51,7 @@ public class NotifyWaitDemo {
         });
         producer.start();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

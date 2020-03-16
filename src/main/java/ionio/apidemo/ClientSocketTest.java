@@ -1,4 +1,4 @@
-package ionio.apidemo;
+package main.java.ionio.apidemo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
