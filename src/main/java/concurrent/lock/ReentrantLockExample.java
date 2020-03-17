@@ -92,7 +92,7 @@ public class ReentrantLockExample {
         exector.execute(example::sleepFunc1);
         exector.execute(example::func2);
 
-        ThreadPoolUtil.tryReleasePool(exector);
+        concurrent.lock.ThreadPoolUtil.tryReleasePool(exector);
     }
 
     /**
@@ -104,7 +104,7 @@ public class ReentrantLockExample {
         exector.execute(example::func1);
         exector.execute(example::func1);
 
-        ThreadPoolUtil.tryReleasePool(exector);
+        concurrent.lock.ThreadPoolUtil.tryReleasePool(exector);
     }
 
 

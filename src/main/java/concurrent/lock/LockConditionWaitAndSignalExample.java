@@ -145,8 +145,8 @@ public class LockConditionWaitAndSignalExample {
         deposite.execute(new DepositTask(account));
         deposite.execute(new DepositTask(account));
 
-        ThreadPoolUtil.tryReleasePool(draw);
-        ThreadPoolUtil.tryReleasePool(deposite);
+        concurrent.lock.ThreadPoolUtil.tryReleasePool(draw);
+        concurrent.lock.ThreadPoolUtil.tryReleasePool(deposite);
     }
 
 }

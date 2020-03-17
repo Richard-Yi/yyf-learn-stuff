@@ -9,6 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @version 1.0 2020/3/14
  */
 public class ThreadLifeTest {
+
     public static void main(String[] args) throws IOException {
         Object object = new Object();
         ReentrantLock lock = new ReentrantLock();
@@ -18,8 +19,8 @@ public class ThreadLifeTest {
             synchronized (object) {
                 try {
                     System.out.println("thread1 waiting");
-                    object.wait();
-//                    object.wait(5000);
+//                    object.wait();
+                    object.wait(5000);
                     System.out.println("thread1 after waiting");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -30,9 +31,9 @@ public class ThreadLifeTest {
         new Thread(()->{
             synchronized (object) {
                 try {
-                    System.out.println("thread2 notify");
+//                    System.out.println("thread2 notify");
                     // 打开或关闭这段注释，观察Thread1的状态
-                    object.notify();
+//                    object.notify();
                     // notify之后当前线程并不会释放锁，只是被notify的线程从等待队列进入同步队列
                     // sleep也不会释放锁，所以thread1 不会获取到锁
                     Thread.sleep(10000000);
@@ -42,35 +43,35 @@ public class ThreadLifeTest {
             }
         }, "Thread2").start();
 
-        new Thread(()->{
-            lock.lock();
-            System.out.println("thread3 waiting");
-            try {
-                condition.await();
-//                condition.await(200, (TimeUnit).SECONDS);
-                System.out.println("thread3 after waiting");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                lock.unlock();
-            }
-        }, "Thread3").start();
-
-        new Thread(()->{
-            lock.lock();
-            System.out.println("thread4");
-            // 打开或关闭这段注释，观察Thread3的状态
-            condition.signal();
-            // signal之后当前线程并不会释放锁，只是被signal的线程从等待队列进入同步队列
-            // sleep也不会释放锁
-            try {
-                Thread.sleep(1000000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                lock.unlock();
-            }
-        }, "Thread4").start();
+//        new Thread(()->{
+//            lock.lock();
+//            System.out.println("thread3 waiting");
+//            try {
+//                condition.await();
+////                condition.await(200, (TimeUnit).SECONDS);
+//                System.out.println("thread3 after waiting");
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } finally {
+//                lock.unlock();
+//            }
+//        }, "Thread3").start();
+//
+//        new Thread(()->{
+//            lock.lock();
+//            System.out.println("thread4");
+//            // 打开或关闭这段注释，观察Thread3的状态
+//            condition.signal();
+//            // signal之后当前线程并不会释放锁，只是被signal的线程从等待队列进入同步队列
+//            // sleep也不会释放锁
+//            try {
+//                Thread.sleep(1000000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } finally {
+//                lock.unlock();
+//            }
+//        }, "Thread4").start();
 
     }
 }
