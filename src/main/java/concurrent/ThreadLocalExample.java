@@ -1,4 +1,4 @@
-package concurrent;
+package main.java.concurrent;
 
 import concurrent.lock.ThreadPoolUtil;
 
@@ -11,11 +11,14 @@ import java.util.concurrent.Executors;
  */
 public class ThreadLocalExample {
 
+    private static ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
+
     public static void main(String[] args) {
-        ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
+
         ExecutorService service = Executors.newCachedThreadPool();
 
         service.execute(() -> {
+            System.out.println(Thread.currentThread().getName() + " set 1");
             threadLocal.set(1);
             try {
                 Thread.sleep(1000);

@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
  */
 public class ThreadLocalDirtyDataDemo {
 
-    public static ThreadLocal<String> threadLocal = new ThreadLocal<>();
+    private static ThreadLocal<String> threadLocal = new ThreadLocal<>();
 
     public static void main(String[] args) {
 
@@ -34,11 +34,12 @@ public class ThreadLocalDirtyDataDemo {
             if (flag) {
                 // 第一个线程set之后，并没有进行remove
                 // 而第二个线程由于某种原因(这里是flag=false) 没有进行set操作
-                threadLocal.set(this.getName() + ", session info ");
+                String sessionInfo = this.getName() + ", session info ";
+                threadLocal.set(sessionInfo);
                 flag = false;
             }
             System.out.println(this.getName() + " 线程 是 " + threadLocal.get());
-            // 线程使用完threadLocal，要及时remove
+            // 线程使用完threadLocal，要及时remove，这里是为了演示错误情况
         }
     }
 }
