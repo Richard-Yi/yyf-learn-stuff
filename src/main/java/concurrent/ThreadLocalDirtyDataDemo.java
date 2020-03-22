@@ -34,7 +34,7 @@ public class ThreadLocalDirtyDataDemo {
             if (flag) {
                 // 第一个线程set之后，并没有进行remove
                 // 而第二个线程由于某种原因(这里是flag=false) 没有进行set操作
-                String sessionInfo = this.getName() + ", session info ";
+                String sessionInfo = this.getName();
                 threadLocal.set(sessionInfo);
                 flag = false;
             }
