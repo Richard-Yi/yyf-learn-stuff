@@ -10,6 +10,13 @@
 
     <dependencies>
 
+        <!-- 查看对象内存占用情况 -->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.10</version>
+        </dependency>
+
     </dependencies>
     
 </project>
